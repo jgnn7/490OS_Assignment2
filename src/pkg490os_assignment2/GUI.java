@@ -5,15 +5,8 @@
  */
 package pkg490os_assignment2;
 
-import java.awt.Container;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
@@ -21,40 +14,69 @@ import javax.swing.UIManager;
  */
 public class GUI extends JFrame {
     
-        public GUI(int vgaps, int hgaps){
+        public GUI(){
             super("GUI");
-            Container pane = this.getContentPane();
-            GridLayout layout = new GridLayout(5,3);
-            layout.setVgap(vgaps);
-            layout.setHgap(hgaps);
-            
+                        
             JLabel codeLabel = new JLabel("Course Code:");
+            codeLabel.setPreferredSize(new Dimension(90, 20));
             JLabel nameLabel = new JLabel("Course Name:");
+            nameLabel.setPreferredSize(new Dimension(90, 20));
             JLabel creditsLabel = new JLabel("No. Of Credits:");
-            JLabel departmentLable = new JLabel("Department");
+            creditsLabel.setPreferredSize(new Dimension(90, 20));
+            JLabel departmentLabel = new JLabel("Department");
+            departmentLabel.setPreferredSize(new Dimension(90, 20));
             JButton addButton = new JButton("Add course");
+            addButton.setPreferredSize(new Dimension(90, 20));
             JButton displayAllButton = new JButton("Display all");
-            JButton displayButton = new JButton ("Display (dept)");
-            JTextField codeText = new JTextField ();
-            JTextField nameText = new JTextField ();
-            JTextField creditText = new JTextField ();
+            displayAllButton.setPreferredSize(new Dimension(100, 20));
+            JButton displayButton = new JButton("Display (dept)");
+            displayButton.setPreferredSize(new Dimension(100, 20));
+            JTextField codeText = new JTextField();
+            codeText.setPreferredSize(new Dimension(100, 20));
+            JTextField nameText = new JTextField();
+            nameText.setPreferredSize(new Dimension(100, 20));
+            JTextField creditText = new JTextField();
+            creditText.setPreferredSize(new Dimension(100, 20));
             JList listBox = new JList();
+            listBox.setPreferredSize(new Dimension(200,100));
             JComboBox combo = new JComboBox();
             
-            pane.add(codeLabel);
-            pane.add(codeText);
-            pane.add(listBox);
+            Container pane = this.getContentPane();
+            BoxLayout box=new BoxLayout(pane, BoxLayout.Y_AXIS);
+            pane.setLayout(box);            
             
+            JPanel panel = new JPanel();
+            BoxLayout layout = new BoxLayout(panel, BoxLayout.X_AXIS);
+            panel.setLayout(layout);
             
+            GridLayout inputGrid = new GridLayout(4,2);
+            JPanel inputPanel = new JPanel();           
+            inputPanel.setLayout(inputGrid);
             
-          
+            inputPanel.add(codeLabel);
+            inputPanel.add(codeText);         
+            inputPanel.add(nameLabel);
+            inputPanel.add(nameText);
+            inputPanel.add(creditsLabel);
+            inputPanel.add(creditText);         
+            inputPanel.add(departmentLabel);
+            inputPanel.add(combo);
             
-        }
+            panel.add(inputPanel);
+            panel.add(listBox);
 
-    private GUI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-public void main(String[] args) {
+            pane.add(panel);
+            pane.add(Box.createRigidArea(new Dimension(0,10)));
+            pane.add(addButton);
+            pane.add(displayAllButton);
+            pane.add(displayButton);
+
+            setTitle("GUI");
+            pack();
+
+        }
+    
+    public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                try{
@@ -66,6 +88,5 @@ public void main(String[] args) {
                new GUI().setVisible(true);
             }
         });
-}  
     }
-
+}  
