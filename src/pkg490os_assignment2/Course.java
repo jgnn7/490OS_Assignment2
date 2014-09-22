@@ -14,5 +14,9 @@ public class Course {
     private String Title;
     private int Credit;
    
-    
+    public Course(String id, String title, int credit){
+       this.ID = id;
+       this.Title = title;
+       this.Credit = credit;
+    }
 }
