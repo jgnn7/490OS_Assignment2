@@ -6,6 +6,8 @@
 package pkg490os_assignment2;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -13,6 +15,12 @@ import javax.swing.*;
  * @author Jose
  */
 public class GUI extends JFrame {
+    
+   // static ArrayList<Department> departments = new ArrayList<Department>();
+    static Department[] departments = new Department[3];
+    String[] deps = new String[] { "CS", "ZO", "CH"};
+    
+    
     
         public GUI(){
             super("GUI");
@@ -37,9 +45,22 @@ public class GUI extends JFrame {
             nameText.setPreferredSize(new Dimension(100, 20));
             JTextField creditText = new JTextField();
             creditText.setPreferredSize(new Dimension(100, 20));
-            JList listBox = new JList();
+            JList listBox = new JList(departments);
             listBox.setPreferredSize(new Dimension(200,100));
             JComboBox combo = new JComboBox();
+            combo.setModel(new javax.swing.DefaultComboBoxModel(deps));
+            combo.addActionListener(new ActionListener(){
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String s = (String) combo.getSelectedItem();
+                    switch(s){
+                        case "CS":
+                            
+                            break;
+                                
+                    }
+               }});
             
             Container pane = this.getContentPane();
             BoxLayout box=new BoxLayout(pane, BoxLayout.Y_AXIS);
@@ -77,6 +98,7 @@ public class GUI extends JFrame {
         }
     
     public static void main(String[] args) {
+    
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                try{
@@ -88,5 +110,14 @@ public class GUI extends JFrame {
                new GUI().setVisible(true);
             }
         });
+           Department computerScience = new Department("Computer Science", "CS");
+        Department zoology = new Department("Zoology", "ZO");
+        Department chemistry = new Department("Chemistry", "CH");
+        departments[0]=computerScience;
+        departments[1]=zoology;
+        departments[2]=chemistry;
+        
     }
+   
+    
 }  

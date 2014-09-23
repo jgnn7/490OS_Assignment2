@@ -18,5 +18,15 @@ public class Course {
        this.ID = id;
        this.Title = title;
        this.Credit = credit;
+    } 
+    public void editId(String id){
+        this.ID = id;
     }
+    public void editTitle(String title){
+        this.Title = title;
+    }
+    public void editCredit(int credit){
+        this.Credit = credit;
+    } 
+    
 }
